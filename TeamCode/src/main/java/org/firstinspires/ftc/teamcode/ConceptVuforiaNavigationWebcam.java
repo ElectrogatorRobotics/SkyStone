@@ -36,6 +36,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.RobotLog;
 import com.qualcomm.robotcore.util.ThreadPool;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.vuforia.Frame;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;

@@ -5,12 +5,6 @@ package org.firstinspires.ftc.teamcode.library;
  */
 
 public interface Camera {
-    public enum Glyph{
-        LEFT, RIGHT, CENTER, UNKNOWN
-    }
-
-    public Glyph getGlyph();
-    public Location getLocation();
 
     public Long getRawX();
     public Long getRawY();
