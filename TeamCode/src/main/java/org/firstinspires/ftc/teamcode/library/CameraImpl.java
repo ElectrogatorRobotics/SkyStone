@@ -83,6 +83,8 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
  */
 
 public class CameraImpl implements Camera {
+    public static final boolean DEBUGMODE = true;
+
 
     // IMPORTANT: If you are using a USB WebCam, you must select CAMERA_CHOICE = BACK; and PHONE_IS_PORTRAIT = false;
     private static final VuforiaLocalizer.CameraDirection CAMERA_CHOICE = BACK;
@@ -156,10 +158,13 @@ public class CameraImpl implements Camera {
          * We can pass Vuforia the handle to a camera preview resource (on the RC phone);
          * If no camera monitor is desired, use the parameter-less constructor instead (commented out below).
          */
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
-
-        // parameters = new VuforiaLocalizer.Parameters();
+        if(DEBUGMODE) {
+            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+            parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+        }
+        else {
+            parameters = new VuforiaLocalizer.Parameters();
+        }
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
 
@@ -336,6 +341,7 @@ public class CameraImpl implements Camera {
     }
 
     public boolean scan(int timeout) {
+        telemetry.addLine("scanning camera");
         targetsSkyStone.activate();
         ElapsedTime et = new ElapsedTime();
         while (et.milliseconds() < timeout) {
@@ -363,15 +369,15 @@ public class CameraImpl implements Camera {
                 VectorF translation = lastLocation.getTranslation();
                 x = translation.get(0) / mmPerInch;
                 y = translation.get(1) / mmPerInch;
-                telemetry.addData("Pos (in)", "{X, Y} = %.1f, %.1f", x, y);
+                if(DEBUGMODE) telemetry.addData("Pos (in)", "{X, Y} = %.1f, %.1f", x, y);
 
                 // express the rotation of the robot in degrees.
                 Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
                 angle = rotation.thirdAngle;
-                telemetry.addData("Rot (deg)", "{Roll, Pitch, Heading} = %.0f, %.0f, %.0f", rotation.firstAngle, rotation.secondAngle, angle);
+                if(DEBUGMODE) telemetry.addData("Rot (deg)", "{Roll, Pitch, Heading} = %.0f, %.0f, %.0f", rotation.firstAngle, rotation.secondAngle, angle);
                 timeout = 0;
             } else {
-                telemetry.addData("Visible Target", "none");
+                if(DEBUGMODE) telemetry.addData("Visible Target", "none");
             }
             telemetry.update();
         }

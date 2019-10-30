@@ -27,12 +27,15 @@ public class TeleOp_Test extends LinearOpMode {
         telemetry.addLine("Initialising... please wait.");
         telemetry.update();
 
-        double adjFactor;
         double throtle;
 
         drive = new DriveImpl();
 
-        hardware.initMotors(hardwareMap);
+        drive.initDrive(hardwareMap);
+        drive.setTelemetry(telemetry);
+        drive.passLinearOp(this);
+
+        drive.setMotorMode(Drive.MotorMode.POWER);
 
         telemetry.addLine("Ready to start... thank you for waiting!");
         telemetry.update();
@@ -47,7 +50,7 @@ public class TeleOp_Test extends LinearOpMode {
 //            backLeftDrive   = gamepad1.left_stick_y - gamepad1.right_stick_x + gamepad1.left_stick_x;
 
             // calculate the throttle position that will be used when calculating the motor powers
-            throtle = drive.throttleControl(gamepad1.left_trigger, .4);
+            throtle = Math.max(gamepad1.left_trigger,.4); //throtle = drive.throttleControl(gamepad1.left_trigger, .4);
 
             /**
              * Calculate the power of each motor by multiplying the left Y-axes and the left X-axes that are
@@ -60,35 +63,7 @@ public class TeleOp_Test extends LinearOpMode {
             backRightDrive  = ((gamepad1.left_stick_y * throtle) + (gamepad1.left_stick_x * throtle) - gamepad1.right_stick_x);
             backLeftDrive   = ((gamepad1.left_stick_y * throtle) - (gamepad1.left_stick_x * throtle) + gamepad1.right_stick_x);
 
-            /**
-             * The motor powers can be calculated to be higher than 1.0 and less than -1.0, so rater than just
-             * clipping the values to 1.0 if they are above 1.0 or -1.0 if below -1.0, we decided to scale the
-             * values down to preserve the control resolution that we would have if the motor powers were divided
-             * by 2.
-             */
-            // error adjustment based on the front right drive wheel
-            maxDrive = Math.abs(frontRightDrive);
-            setMaxDrive(frontLeftDrive);
-            setMaxDrive(backRightDrive);
-            setMaxDrive(backLeftDrive);
-            // we set the adjustment factor to 1 so it does not change the motor powers if if they are in the 1.0 to -1.0 range
-            adjFactor = 1;
-            // we need to use the abs value to of the max drive power to determine if we need to scale the motor powers down or not
-            if (maxDrive > 1) {
-                adjFactor = (1 / maxDrive);
-            }
-
-            hardware.frontLeftDrive.setPower(drive.setMotorSpeed(frontLeftDrive * adjFactor, DriveImpl.MotorControlMode.LINEAR_CONTROL));
-	        hardware.frontRightDrive.setPower(drive.setMotorSpeed(frontRightDrive * adjFactor, DriveImpl.MotorControlMode.LINEAR_CONTROL));
-	        hardware.backLeftDrive.setPower(drive.setMotorSpeed(backLeftDrive * adjFactor, DriveImpl.MotorControlMode.LINEAR_CONTROL));
-	        hardware.backRightDrive.setPower(drive.setMotorSpeed(backRightDrive * adjFactor, DriveImpl.MotorControlMode.LINEAR_CONTROL));
-
-//            hardware.frontRightDrive.setPower(drive.setMotorSpeed(frontRightDrive, DriveImpl.MotorControlMode.LINEAR_CONTROL));
-//            hardware.frontLeftDrive.setPower(drive.setMotorSpeed(frontLeftDrive, DriveImpl.MotorControlMode.LINEAR_CONTROL));
-//            hardware.backLeftDrive.setPower(drive.setMotorSpeed(backLeftDrive, DriveImpl.MotorControlMode.LINEAR_CONTROL));
-//            hardware.backRightDrive.setPower(drive.setMotorSpeed(backRightDrive, DriveImpl.MotorControlMode.LINEAR_CONTROL));
-
-
+            drive.setDriveSpeed(frontRightDrive,backRightDrive,frontLeftDrive,backLeftDrive);
 
             telemetry.addData("Front right drive speed = ", "%1.2f", frontRightDrive);
             telemetry.addData("Front left drive speed  = ", "%1.2f", frontLeftDrive);
@@ -103,9 +78,4 @@ public class TeleOp_Test extends LinearOpMode {
         }
     }
 
-    void setMaxDrive(double motor) {
-        if (Math.abs(motor) > maxDrive) {
-            maxDrive = Math.abs(motor);
-        }
-    }
 }

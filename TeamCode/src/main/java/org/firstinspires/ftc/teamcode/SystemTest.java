@@ -4,35 +4,20 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.library.Drive;
-import org.firstinspires.ftc.teamcode.library.DriveImpl;
 import org.firstinspires.ftc.teamcode.library.ElectorgatorHardware;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-/**
- * Created by Luke on 10/1/2017.
- */
 
 @TeleOp(name = "SysFunc Test")
 public class SystemTest extends LinearOpMode {
     ElectorgatorHardware hardware = new ElectorgatorHardware();
-	Drive drive;
-
-    double frontLeftDrive, frontRightDrive, backRightDrive, backLeftDrive;
-    boolean startRelic = false;
-    double maxDrive = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
         // initialise the motors
         telemetry.addLine("Initialising... please wait.");
         telemetry.update();
-
-        double adjFactor;
-        double throtle;
-
-        drive = new DriveImpl();
 
         hardware.initMotors(hardwareMap);
 
