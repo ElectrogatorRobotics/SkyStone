@@ -1,82 +1,51 @@
 package org.firstinspires.ftc.teamcode.library;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-
-/**
- * Created by cameron.czekai on 11/1/2017.
- */
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public interface Drive {
-	double MIN_SPEED = 0.2;
 
+    enum MotorMode {POWER, ENCODER, POSITION}
 
-    void initMotors(HardwareMap hardware);
+    /**
+     * initialise the drivetrain motors and servos
+     * @param hardwareMap
+     */
+    void initDrive(HardwareMap hardwareMap);
+    void init_bno055IMU (HardwareMap hardwareMap);
+    void setTelemetry(Telemetry telem);
+    void passLinearOp(LinearOpMode lop);
+    void setMotorMode(MotorMode MM);
 
-	void setTelemetry(Telemetry telem);
+    /**
+     * set the power of all drive motors to the same value
+     * @param speed
+     */
+    void setDriveSpeed(double speed);
 
-	/**
-	 * @param targetDist
-	 */
-	void driveToTarget(double targetDist);
+    void setTargetPosition (int targetPosition);
 
-	/**
-	 * Set the speed of a motor with or with out expo.
-	 * Use this method if the expo base needs to be less than or grater than 5
-	 *
-	 * @param speed
-	 * @param controlMode
-	 * @param expoBase
-	 * @return
-	 */
-	double setMotorSpeed(double speed, DriveImpl.MotorControlMode controlMode, double expoBase);
+    /**
+     * tolerance is measured in encoder ticks
+     * @param tolerance
+     */
+    void setTargetTolerance(int tolerance);
 
-	void turnToDegree(double angle);
+    /**
+     * set the power of each drive motor to a unique value
+     * @param frontRight
+     * @param backRight
+     * @param frontLeft
+     * @param backLeft
+     */
+    void setDriveSpeed(double frontRight, double backRight, double frontLeft, double backLeft);
 
-	/**
-	 * Set the speed of a motor with or with out expo.
-	 * Use this method if the expo base needs to be 5
-	 *
-	 * @param speed
-	 * @param controlMode
-	 * @return
-	 */
-	double setMotorSpeed(double speed, DriveImpl.MotorControlMode controlMode);
+    void stop();
 
-	/**
-	 *
-	 * @param throttle
-	 * @param minValue
-	 * @return
-	 */
-	double throttleControl(double throttle, double minValue);
-
-	/**
-	 *
-	 * @param speed
-	 * @param controlMode
-	 * @param throttle
-	 * @return
-	 */
-	double setMotorSpeedWithThrottle(double speed, DriveImpl.MotorControlMode controlMode, double throttle);
-
-	void forward(int inches);
-
-    void turn(double angle);
-
-	void forward_time(int milliseconds);
-
-	void shutdown();
-
-	/**
-	 * Thees are the motor control modes that we can use
-	 */
-	enum MotorControlMode {
-		EXPO_CONTROL, LINEAR_CONTROL
-	}
-
-	enum ThrottleControl {LEFT_TRIGGER, RIGHT_TRIGGER}
+    void driveByPosition(double power, LinearOpMode lom);
+    double turnToAngle (double angleToTurn, LinearOpMode lom);
+    void slideOver(int targetPosition, LinearOpMode lom);
 }
