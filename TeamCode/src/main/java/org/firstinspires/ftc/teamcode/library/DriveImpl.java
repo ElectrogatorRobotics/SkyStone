@@ -112,10 +112,8 @@ public class DriveImpl implements Drive {
         bno055IMU.initialize(parameters);
     }
 
-
-
-
     // forward can go backwards????
+    //what the actual fuck
     public void forward(double inches) {
         int ticks = (int) Math.round(inches * ENCODER_COUNTS_PER_INCH);
         setTargetTolerance(50);
