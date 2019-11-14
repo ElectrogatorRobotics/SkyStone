@@ -16,8 +16,8 @@ Servo Servo2 = HardwareMap.dcMotor.get("Servo2");
 // set servo 3
 Servo Servo3 = HardwareMap.dcMotor.get("Servo3");
 // set speeds of servo2 movement
-    Servo1.setPower(x);
-    Servo2.setPower(x);
+    Servo1.SetPower(x);
+    Servo2.setPower (x);
     Servo3.setPower(x);
 
 //  function to bend servo2 with remote?

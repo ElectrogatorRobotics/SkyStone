@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.library;
 
 public class automode
-
+//start all the shit
 // scan camera
     // camera.scan()
 // get cam values
@@ -22,4 +22,5 @@ public class automode
 // turn and drive to the other side
 // drop the block off
 // get our ass out of the way
+//end the code take a fucking brake you deserve it
 

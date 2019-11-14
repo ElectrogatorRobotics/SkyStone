@@ -6,13 +6,10 @@ import com.firstinspires.ftc.teamcode.library
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public interface Arm{}
-
 //set servo 1
-
+    void setServo1 ("power")
 // set servo 2
-
-// set servo 3
-
+    void setServo2 ("Power");
 //  function to bend servo2 with remote?
 
 // function to set an x and y coordinate
