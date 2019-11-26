@@ -7,9 +7,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public interface Arm{}
 //set servo 1
-    void setServo1 ("power")
+    void setServo1 ("Power")
 // set servo 2
     void setServo2 ("Power");
+// set servo 3
+    void setSevo3 ("Power")
 //  function to bend servo2 with remote?
 
 // function to set an x and y coordinate
