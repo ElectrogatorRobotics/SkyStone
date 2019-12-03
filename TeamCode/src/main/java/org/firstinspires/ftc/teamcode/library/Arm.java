@@ -5,13 +5,21 @@ import com. firstinspires.ftc.teamcode.library.Drive
 import com.firstinspires.ftc.teamcode.library
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public interface Arm{}
-//set servo 1
-    void setServo1 ("Power")
-// set servo 2
-    void setServo2 ("Power");
-// set servo 3
-    void setSevo3 ("Power")
+public interface Arm{
+
+
+    void ArmImpl(HardwareMap HardwareMap);
+    void armAngle (double armAngle,linarOpMode );
+    void setServoSpeed (double Power);
+    void setServoSpeed (double Servo1,double Servo2, double Servo3);
+    void setPosition (int targetPosition );
+
+
+
+
+
+
+
 //  function to bend servo2 with remote?
 
 // function to set an x and y coordinate

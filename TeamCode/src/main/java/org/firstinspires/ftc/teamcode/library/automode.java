@@ -1,7 +1,11 @@
 package org.firstinspires.ftc.teamcode.library;
 
+import.com.qualcom.robotcore.hardware.HardwareMap
+
+
 public class automode
 //start all the shit
+public void intDrive
 // scan camera
     // camera.scan()
 // get cam values
