@@ -4,6 +4,7 @@ import com.firstinspires.ftc.teamcode.library.ElectorgatorHardware
 import com. firstinspires.ftc.teamcode.library.Drive
 import com.firstinspires.ftc.teamcode.library
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.hardware.motors.RevRobotics20HdHexMotor;
 
 public interface Arm{
 
@@ -12,8 +13,8 @@ public interface Arm{
     void armAngle (double armAngle,linarOpMode );
     void setServoSpeed (double Power);
     void setServoSpeed (double Servo1,double Servo2, double Servo3);
-    void setPosition (int targetPosition );
-
+    void setPosition (int targetPosition ) ;
+    void extend();
 
 
 

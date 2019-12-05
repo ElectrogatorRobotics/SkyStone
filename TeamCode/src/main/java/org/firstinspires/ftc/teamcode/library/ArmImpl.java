@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode.library;
+import android.app.job.JobInfo;
+
 import com.firstinspires.ftc.teamcode.library.ElectorgatorHardware
 import com. firstinspires.ftc.teamcode.library.Drive
 import com.firstinspires.ftc.teamcode.library
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,11 +14,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import com.qualcomm.hardware.motors.RevRobotics20HdHexMotor;
 
 public class ArmImpl implements Servo {
-     public Servo Servo1 = HardwareMap.Servo.get ("Servo1");
-     public Servo Servo2 = HardwareMap.Servo.get("Servo2");
-     public Servo Servo3 = HardwareMap.Servo.get("Servo3");
+     public Motor motor1 = HardwareMap..get ("Servo1");
+     public Motor Motor2 = HardwareMap.Servo.get("Servo2");
+     public Servo Servo1 = HardwareMap.Servo.get("Servo3");
 // set speeds of servo2 movement
 
     int setServo (HardwareMap)
@@ -55,8 +59,30 @@ public void servoPosition (int targetPosition){
 }
 public void stop (setServoSpeed(0.0))
 //  function to bend servo2 with remote?
-public void Hinge ( )
+public void motorExtend(){
+        if Gamepad  = 1;
+        setServoSpeed(50);
+        if Gamepad = 0.0;
+        setServoSpeed(0);
 
+        stop();
+
+}
+public void MotorRotate (){
+        if Gamepad = 1;
+        setMotorSpeed(-50);
+        if Gamepad = 0;
+        setMotorSpeed();
+
+        stop();
+}
+
+public void servoSnagger (){
+        if Gamepad = 1;
+        setServoSpeed(1);
+        if Gamepad = 0;
+        setServoSpeed(0);
+}
 // function to set an x and y coordinate
 
     /* have servo 3 work on gripping
