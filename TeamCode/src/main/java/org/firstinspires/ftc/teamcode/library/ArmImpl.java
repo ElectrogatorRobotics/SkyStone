@@ -17,7 +17,7 @@ public class ArmImpl implements Arm {
      public ArmImpl(HardwareMap hwm) {
          rotate = (DcMotorEx) hwm.dcMotor.get("rotate arm");
          rotate.setMotorType(MotorConfigurationType.getMotorType(RevRobotics20HdHexMotor.class));
-         rotate.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         rotate.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
          rotate.setDirection(DcMotorSimple.Direction.FORWARD);
          rotate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 

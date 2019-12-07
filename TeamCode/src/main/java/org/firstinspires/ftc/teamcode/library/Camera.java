@@ -9,14 +9,12 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  */
 
 public interface Camera {
-<<<<<<< HEAD
-=======
-    public void init(HardwareMap hardwareMap);
-    public boolean scan(int timeout);
-    public void setTelemetry(Telemetry telemetry);
->>>>>>> master
 
-    public Float getX();
-    public Float getY();
-    public Float getAngle();
+     void init(HardwareMap hardwareMap);
+     boolean scan(int timeout);
+    void setTelemetry(Telemetry telemetry);
+
+     Float getX();
+     Float getY();
+     Float getAngle();
 }
