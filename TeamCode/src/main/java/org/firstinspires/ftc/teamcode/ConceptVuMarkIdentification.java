@@ -71,7 +71,7 @@ import org.firstinspires.ftc.teamcode.library.CameraImpl;
  */
 
 @TeleOp(name="Cam test", group ="Concept")
-//@Disabled
+@Disabled
 public class ConceptVuMarkIdentification extends LinearOpMode {
 
     @Override public void runOpMode() {

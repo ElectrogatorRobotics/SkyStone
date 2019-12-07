@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.library.ElectorgatorHardware;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@TeleOp(name = "SysFunc Test")
+@TeleOp(name = "SysFunc Test", group ="Diagnostics")
 public class SystemTest extends LinearOpMode {
     ElectorgatorHardware hardware = new ElectorgatorHardware();
 

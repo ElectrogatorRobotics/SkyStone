@@ -6,14 +6,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.library.Camera;
 import org.firstinspires.ftc.teamcode.library.CameraImpl;
 import org.firstinspires.ftc.teamcode.library.Drive;
-import org.firstinspires.ftc.teamcode.library.DriveImpl;
+import org.firstinspires.ftc.teamcode.library.DriveImplGB;
 
 @Autonomous(name="Auto Test", group="Testing")
 public class AutoModeConcept extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Drive drive = new DriveImpl();
+        Drive drive = new DriveImplGB();
         drive.initDrive(hardwareMap);
         drive.init_bno055IMU(hardwareMap);
         drive.passLinearOp(this);
