@@ -63,5 +63,36 @@ public class SystemTest extends LinearOpMode {
             et.reset();
         hardware.backRightDrive.setPower(0);
         while (et.milliseconds() < 1000) ;
+
+
+        //Back Right Drive
+        telemetry.addLine("Running Rotate Motor");
+        telemetry.update();
+        et.reset();
+        while (et.milliseconds() < 1000) hardware.rotateDrive.setPower(.4);
+        hardware.rotateDrive.setPower(0);
+        et.reset();
+        while (et.milliseconds() < 1000) hardware.rotateDrive.setPower(-.4);
+        hardware.rotateDrive.setPower(0);
+
+        //Rotate
+        telemetry.addLine("Running Extend Drive");
+        telemetry.update();
+        et.reset();
+        while (et.milliseconds() < 1000) hardware.extendDrive.setPower(.4);
+        hardware.extendDrive.setPower(0);
+        et.reset();
+        while (et.milliseconds() < 1000) hardware.extendDrive.setPower(-.4);
+        hardware.extendDrive.setPower(0);
+
+        while(opModeIsActive()) {
+            if (gamepad1.a) {
+                hardware.grip.setPosition(0);
+            }
+            if (gamepad1.b) {
+                hardware.grip.setPosition(.8);
+            }
+        }
+
     }
 }

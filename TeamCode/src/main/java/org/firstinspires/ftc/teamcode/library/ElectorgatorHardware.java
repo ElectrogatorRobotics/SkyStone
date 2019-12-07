@@ -21,9 +21,12 @@ public class ElectorgatorHardware {
     public DcMotor frontLeftDrive  = null;
     public DcMotor backRightDrive  = null;
     public DcMotor backLeftDrive   = null;
+
+    public DcMotor rotateDrive = null;
+    public DcMotor extendDrive  = null;
 //    public DcMotor liftMotor        = null;
 
-//	public Servo jewelServo = null;
+	public Servo grip = null;
 //	public Servo leftClaw   = null;
 //	public Servo rightClaw  = null;
 
@@ -91,6 +94,22 @@ public class ElectorgatorHardware {
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
+        rotateDrive  = hardwareMap.dcMotor.get("rotate arm");
+        extendDrive   = hardwareMap.dcMotor.get("extend arm");
+        // set speed
+        rotateDrive.setPower(0.0);
+        extendDrive.setPower(0.0);
+        // set direction
+        rotateDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        extendDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        // set mode
+        // TODO: 11/9/2017 set drive mode to RUN_USING_ENCODER once the encoders are hocked up
+        rotateDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        extendDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        grip = hardwareMap.servo.get("grip arm");
     }
 
     public void initIMU (HardwareMap hardware) {

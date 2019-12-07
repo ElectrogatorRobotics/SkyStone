@@ -59,5 +59,5 @@ public class automode extends LinearOpMode {
 // drop the block off
 // get our ass out of the way
 //end the code take a fucking brake you deserve it
-}
+
 //*/

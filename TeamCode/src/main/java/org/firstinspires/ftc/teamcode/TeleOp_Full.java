@@ -76,7 +76,7 @@ public class TeleOp_Full extends LinearOpMode {
             arm.setExtendSpeed(extend);
 
             if(gamepad2.left_bumper) arm.grip();
-            if (gamepad2.right_bumper)arm.release();
+            else if (gamepad2.right_bumper) arm.release();
 
 
             //TELEMETRY
