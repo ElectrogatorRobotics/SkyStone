@@ -1,88 +1,71 @@
 package org.firstinspires.ftc.teamcode.library;
-import android.app.job.JobInfo;
 
-import com.firstinspires.ftc.teamcode.library.ElectorgatorHardware
-import com. firstinspires.ftc.teamcode.library.Drive
-import com.firstinspires.ftc.teamcode.library
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import com.qualcomm.hardware.motors.RevRobotics20HdHexMotor;
+import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
-public class ArmImpl implements Servo {
-     public Motor motor1 = HardwareMap..get ("Servo1");
-     public Motor Motor2 = HardwareMap.Servo.get("Servo2");
-     public Servo Servo1 = HardwareMap.Servo.get("Servo3");
-// set speeds of servo2 movement
+public class ArmImpl implements Arm {
+     public DcMotor rotate;
+     public DcMotor extend;
+     public Servo grip;
 
-    int setServo (HardwareMap)
+     public ArmImpl(HardwareMap hwm) {
+         rotate = (DcMotorEx) hwm.dcMotor.get("rotate arm");
+         rotate.setMotorType(MotorConfigurationType.getMotorType(RevRobotics20HdHexMotor.class));
+         rotate.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         rotate.setDirection(DcMotorSimple.Direction.FORWARD);
+         rotate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-    public double getArmAngle (double armAngle, LinearOpMode) {
-        angle = bno055IMU.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
-        /**
-         * set {@link angleToTurn} equal to the {@link imu}'s Z axes
-         */
-        setServo(setServo.POWER);
-        double power = TURN_POWER;
-        if(angleToTurn < 0) power *= -1;
-        angleToTurn *= -1;
-        double targetAngle = (angle.thirdAngle + angleToTurn + 180)%180;
-        if(targetAngle >90){
-            targetAngle -= 180;
-        }
-        stop();
-        setMotorMode(setServo.ENCODER);
-        return angleToTurn;
+         extend = (DcMotorEx) hwm.dcMotor.get("extend arm");
+         extend.setMotorType(MotorConfigurationType.getMotorType(RevRobotics20HdHexMotor.class));
+         extend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         extend.setDirection(DcMotorSimple.Direction.FORWARD);
+         extend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+         grip = hwm.servo.get("grip arm");
+     }
+
+    @Override
+    public void armAngle(double armAngle, LinearOpMode lom) {
+
     }
-public void setServoSpeed (double Power) {
-    Servo1.setPower(Power);
-    Servo2.setPower(Power);
-    Servo3.setPower(Power);
-}
 
-public void setServoSpeed (double Servo1, double Servo2, double Servo3){
-        Servo1.setPower(Servo1);
-        Servo2.setPower(Servo2);
-        Servo3.setPower(Servo3);
-}
-public void servoPosition (int targetPosition){
-        Servo1.setTargetPosition(Servo1.getPosition()+targetPosition);
-        Servo2.setTargetPosition(Servo2.getPosition()+targetPosition);
-        Servo3.setTsrgetPostiton(Servo3.getPosition()+targetPosition);
-}
-public void stop (setServoSpeed(0.0))
-//  function to bend servo2 with remote?
-public void motorExtend(){
-        if Gamepad  = 1;
-        setServoSpeed(50);
-        if Gamepad = 0.0;
-        setServoSpeed(0);
+    @Override
+    public void setAngleSpeed(double Power) {
+        rotate.setPower(Power);
+    }
 
-        stop();
+    @Override
+    public void setExtendSpeed(double Power) {
+        extend.setPower(Power);
+    }
 
-}
-public void MotorRotate (){
-        if Gamepad = 1;
-        setMotorSpeed(-50);
-        if Gamepad = 0;
-        setMotorSpeed();
+    @Override
+    public void setExtendPosition(int targetPosition) {
 
-        stop();
-}
+    }
 
-public void servoSnagger (){
-        if Gamepad = 1;
-        setServoSpeed(1);
-        if Gamepad = 0;
-        setServoSpeed(0);
-}
+    @Override
+    public void grip() {
+        grip.setPosition(1); //TODO: WTH is the actual grip val
+    }
+
+    @Override
+    public void release() {
+        grip.setPosition(0); //fling it wide open.
+    }
+
+    @Override
+    public void setGripPosition(double targetPosition) {
+        grip.setPosition(targetPosition);
+    }
+
+
 // function to set an x and y coordinate
 
     /* have servo 3 work on gripping

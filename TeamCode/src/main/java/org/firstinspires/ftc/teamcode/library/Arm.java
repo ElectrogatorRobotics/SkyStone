@@ -1,20 +1,22 @@
 package org.firstinspires.ftc.teamcode.library;
-}
-import com.firstinspires.ftc.teamcode.library.ElectorgatorHardware
-import com. firstinspires.ftc.teamcode.library.Drive
-import com.firstinspires.ftc.teamcode.library
+import org.firstinspires.ftc.teamcode.library.ElectorgatorHardware;
+import org. firstinspires.ftc.teamcode.library.Drive;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.hardware.motors.RevRobotics20HdHexMotor;
 
 public interface Arm{
 
 
-    void ArmImpl(HardwareMap HardwareMap);
-    void armAngle (double armAngle,linarOpMode );
-    void setServoSpeed (double Power);
-    void setServoSpeed (double Servo1,double Servo2, double Servo3);
-    void setPosition (int targetPosition ) ;
-    void extend();
+    //void Arm(HardwareMap HardwareMap);
+    void armAngle (double armAngle, LinearOpMode linarOpMode);
+    void setAngleSpeed (double Power);
+    void setExtendSpeed (double Power);
+    void setExtendPosition (int targetPosition );
+    void grip();
+    void release();
+    void setGripPosition (double targetPosition);
 
 
 
