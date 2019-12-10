@@ -52,7 +52,7 @@ public class ArmImpl implements Arm {
 
     @Override
     public void grip() {
-        grip.setPosition(0); //TODO: WTH is the actual grip val
+        grip.setPosition(.2); //TODO: WTH is the actual grip val
     }
 
     @Override

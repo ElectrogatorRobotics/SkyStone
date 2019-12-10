@@ -85,14 +85,19 @@ public class SystemTest extends LinearOpMode {
         while (et.milliseconds() < 1000) hardware.extendDrive.setPower(-.4);
         hardware.extendDrive.setPower(0);
 
+        float servo = 0.5f;
         while(opModeIsActive()) {
             if (gamepad1.a) {
-                hardware.grip.setPosition(0);
+                servo -= .1;
+                servo = Math.max(.2f,servo);
             }
             if (gamepad1.b) {
-                hardware.grip.setPosition(.8);
+                servo += .1;
+                servo = Math.min(.8f,servo);
             }
+            hardware.grip.setPosition(servo);
         }
 
+        telemetry.addData("Servo = ",servo);
     }
 }
