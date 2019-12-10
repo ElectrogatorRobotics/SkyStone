@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.library.Drive;
 import org.firstinspires.ftc.teamcode.library.DriveImpl;
 import org.firstinspires.ftc.teamcode.library.Arm;
 import org.firstinspires.ftc.teamcode.library.ArmImpl;
-@Autonomous(name="Auto Test", group="Testing")
+@Autonomous(name="Auto Test 2", group="Testing")
 public class automode extends LinearOpMode {
 
         @Override
@@ -25,6 +25,7 @@ public class automode extends LinearOpMode {
                 Arm arm = new ArmImpl(hardwareMap);
 
                 waitForStart();
+
                 while(opModeIsActive()){
                         camera.scan(3000);
                         telemetry.addData("Cam X:",camera.getX());
@@ -41,8 +42,8 @@ public class automode extends LinearOpMode {
 // scan camera
         // camera.scan()
 // get cam values
-        //camera.getx.(); or camera.gety();
-// grive to spot
+        //camera.get x.(); or camera.get y();
+// Drive to spot
         //drive.go to XY (x,y, here, now)
 // scan?
         //camera.scan
@@ -53,7 +54,7 @@ public class automode extends LinearOpMode {
 // the above is a special function that looks only for sky stones
 //slide over to the block
         //drive.slide(x)
-        //arm.grabfloor();
+        //arm.grab floor();
 // grab the block
 // turn and drive to the other side
 // drop the block off
