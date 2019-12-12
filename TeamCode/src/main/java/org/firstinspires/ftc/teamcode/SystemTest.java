@@ -88,16 +88,23 @@ public class SystemTest extends LinearOpMode {
         float servo = 0.5f;
         while(opModeIsActive()) {
             if (gamepad1.a) {
+                servo -= .2;
+            }
+            else if (gamepad1.b) {
+                servo += .2;
+            }
+            else if (gamepad1.x) {
                 servo -= .1;
-                servo = Math.max(.2f,servo);
             }
-            if (gamepad1.b) {
+            else if (gamepad1.y) {
                 servo += .1;
-                servo = Math.min(.8f,servo);
             }
+            servo = Math.min(1,Math.max(0,servo));
             hardware.grip.setPosition(servo);
-        }
 
-        telemetry.addData("Servo = ",servo);
+            telemetry.addData("Servo = ",servo);
+            telemetry.update();
+         }
+
     }
 }

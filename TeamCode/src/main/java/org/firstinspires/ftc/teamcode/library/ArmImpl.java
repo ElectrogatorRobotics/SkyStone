@@ -28,6 +28,7 @@ public class ArmImpl implements Arm {
          extend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
          grip = hwm.servo.get("grip arm");
+         grip.scaleRange(0.2, 0.8);
      }
 
     @Override
@@ -52,12 +53,12 @@ public class ArmImpl implements Arm {
 
     @Override
     public void grip() {
-        grip.setPosition(.2); //TODO: WTH is the actual grip val
+        grip.setPosition(1);
     }
 
     @Override
     public void release() {
-        grip.setPosition(.8); //fling it wide open.
+         grip.setPosition(0); //fling it wide open.
     }
 
     @Override
