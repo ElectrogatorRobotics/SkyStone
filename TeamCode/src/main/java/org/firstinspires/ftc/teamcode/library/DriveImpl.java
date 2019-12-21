@@ -233,12 +233,12 @@ public class DriveImpl implements Drive {
     }
 
     public void slideOver(int targetPosition, LinearOpMode lom){
-        setMotorMode(MotorMode.POSITION);
         setTargetTolerance(50);
         frontLeftDrive.setTargetPosition(frontLeftDrive.getCurrentPosition() + targetPosition);
         frontRightDrive.setTargetPosition(frontRightDrive.getCurrentPosition() - targetPosition);
         backLeftDrive.setTargetPosition(backLeftDrive.getCurrentPosition() - targetPosition);
         backRightDrive.setTargetPosition(backRightDrive.getCurrentPosition() + targetPosition);
+        setMotorMode(MotorMode.POSITION);
         setDriveSpeed(SLIDE_POWER, SLIDE_POWER*-1, SLIDE_POWER*-1, SLIDE_POWER);
         do {
             Thread.yield(); //effectively what the LinearOpMode idle call does

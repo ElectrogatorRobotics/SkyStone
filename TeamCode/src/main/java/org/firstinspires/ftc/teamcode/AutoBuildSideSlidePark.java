@@ -28,7 +28,7 @@ public class AutoBuildSideSlidePark extends LinearOpMode {
         waitForStart();
 //        while(opModeIsActive()){
                 drive.slide(28);
-              drive.forward(-24);
+              drive.forward(-28);
 
 //            camera.scan(3000);
 //            telemetry.addData("Cam X:",camera.getX());
