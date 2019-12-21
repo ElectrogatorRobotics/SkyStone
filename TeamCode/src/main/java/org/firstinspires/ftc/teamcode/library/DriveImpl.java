@@ -51,7 +51,7 @@ public class DriveImpl implements Drive {
      * wheel diameter = 4 inches
      * ticks per revolution of wheel = 7 counts per motor revolution * 20 gearbox reduction (20:1)
      */
-    public static final double ENCODER_COUNTS_PER_INCH = (28 * 20) / (Math.PI * 4);
+    public static final double ENCODER_COUNTS_PER_INCH = (28 * 28) / (Math.PI * 4);
 
     public enum MoveMethod {STRAIGHT, TURN, SLIDE}
 

@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.library.ElectorgatorHardware;
  * Created by Luke on 10/1/2017.
  */
 
-@TeleOp(name = "TeleOp-Move Only")
+@TeleOp(name = "TeleOp-Move Only", group ="Diagnostics")
 public class TeleOp_Test extends LinearOpMode {
     ElectorgatorHardware hardware = new ElectorgatorHardware();
 	Drive drive;

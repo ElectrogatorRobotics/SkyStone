@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.library.Drive;
 import org.firstinspires.ftc.teamcode.library.DriveImpl;
 import org.firstinspires.ftc.teamcode.library.Arm;
 import org.firstinspires.ftc.teamcode.library.ArmImpl;
-@Autonomous(name="Auto Test 2", group="Testing")
+/*@Autonomous(name="Auto Test 2", group="Testing")
 public class automode extends LinearOpMode {
 
         @Override

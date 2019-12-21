@@ -34,6 +34,9 @@ public interface Drive {
      */
     void setTargetTolerance(int tolerance);
 
+    void forward(double inches);
+    void slide(double inches);
+
     /**
      * set the power of each drive motor to a unique value
      * @param frontRight

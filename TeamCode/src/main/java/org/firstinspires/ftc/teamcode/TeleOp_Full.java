@@ -68,11 +68,11 @@ public class TeleOp_Full extends LinearOpMode {
 
             //GAMEPAD 2
 
-            throttle2 = Math.max(gamepad2.left_trigger,.2);
+            throttle2 = Math.max(gamepad2.left_trigger,.5);
 
-            rotate = gamepad2.left_stick_x * throttle2;
+            rotate = -gamepad2.left_stick_y * throttle2;
             arm.setAngleSpeed(rotate);
-            extend = gamepad2.right_stick_y * throttle2;
+            extend = -gamepad2.right_stick_y * throttle2;
             arm.setExtendSpeed(extend);
 
             if(gamepad2.left_bumper) arm.grip();
