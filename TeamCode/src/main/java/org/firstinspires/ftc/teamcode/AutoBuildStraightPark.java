@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.library.ArmImpl;
 import org.firstinspires.ftc.teamcode.library.Drive;
 import org.firstinspires.ftc.teamcode.library.DriveImpl;
 
-@Autonomous(name="Park Build Direct", group="Park")
+@Autonomous(name="Park Right Direct", group="Park")
 public class AutoBuildStraightPark extends LinearOpMode {
 
     @Override

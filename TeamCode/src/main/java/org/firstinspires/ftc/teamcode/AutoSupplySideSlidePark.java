@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.library.ArmImpl;
 import org.firstinspires.ftc.teamcode.library.Drive;
 import org.firstinspires.ftc.teamcode.library.DriveImpl;
 
-@Autonomous(name="Park Supply Slide", group="Park")
+@Autonomous(name="Park Left Slide", group="Park")
 public class AutoSupplySideSlidePark extends LinearOpMode {
 
     @Override
@@ -27,8 +27,8 @@ public class AutoSupplySideSlidePark extends LinearOpMode {
 
         waitForStart();
 //        while(opModeIsActive()){
-                drive.slide(28);
-              drive.forward(28);
+                drive.slide(-28);
+              drive.forward(-28);
 
 //            camera.scan(3000);
 //            telemetry.addData("Cam X:",camera.getX());

@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.library.CameraImpl;
 import org.firstinspires.ftc.teamcode.library.Drive;
 import org.firstinspires.ftc.teamcode.library.DriveImpl;
 
-@Autonomous(name="Park Supply Direct", group="Park")
+@Autonomous(name="Park Left Direct", group="Park")
 public class AutoSupplyStraightPark extends LinearOpMode {
 
     @Override
@@ -29,8 +29,8 @@ public class AutoSupplyStraightPark extends LinearOpMode {
 
         waitForStart();
 //        while(opModeIsActive()){
-              drive.slide(2);
-              drive.forward(28);
+              drive.slide(-2);
+              drive.forward(-28);
 
 //            camera.scan(3000);
 //            telemetry.addData("Cam X:",camera.getX());
