@@ -34,10 +34,12 @@ public class automode extends LinearOpMode {
                         telemetry.update();
                         sleep(2000);
                 }
-        void drive () extends
+        void Drive () extends
                 telemetry.addData("camX",camera.getX());
                 telemetry.addData("camY", camera.getY());
                 telemetry.addData("camAngle",camera.getAngle());
+                telemetry.update();
+                drive.go(camera.getX());
 
         }
 }
