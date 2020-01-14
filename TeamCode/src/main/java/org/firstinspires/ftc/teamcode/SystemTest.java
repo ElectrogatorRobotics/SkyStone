@@ -86,7 +86,7 @@ public class SystemTest extends LinearOpMode {
         hardware.extendDrive.setPower(0);
 
         float servo = 0.5f;
-        while(opModeIsActive()) {
+        while(!gamepad1.right_bumper) {
             if (gamepad1.a) {
                 servo -= .2;
             }
@@ -99,12 +99,55 @@ public class SystemTest extends LinearOpMode {
             else if (gamepad1.y) {
                 servo += .1;
             }
-            servo = Math.min(1,Math.max(0,servo));
+            servo = Math.min(.8f,Math.max(.2f,servo));
             hardware.grip.setPosition(servo);
 
             telemetry.addData("Servo = ",servo);
             telemetry.update();
          }
+        while(gamepad1.right_bumper);
 
+        servo = 0.5f;
+        while(!gamepad1.right_bumper) {
+            if (gamepad1.a) {
+                servo -= .2;
+            }
+            else if (gamepad1.b) {
+                servo += .2;
+            }
+            else if (gamepad1.x) {
+                servo -= .1;
+            }
+            else if (gamepad1.y) {
+                servo += .1;
+            }
+            servo = Math.min(.8f,Math.max(.2f,servo));
+            hardware.FD1.setPosition(servo);
+
+            telemetry.addData("FD1 = ",servo);
+            telemetry.update();
+        }
+        while(gamepad1.right_bumper);
+
+        servo = 0.5f;
+        while(!gamepad1.right_bumper) {
+            if (gamepad1.a) {
+                servo -= .2;
+            }
+            else if (gamepad1.b) {
+                servo += .2;
+            }
+            else if (gamepad1.x) {
+                servo -= .1;
+            }
+            else if (gamepad1.y) {
+                servo += .1;
+            }
+            servo = Math.min(.8f,Math.max(.2f,servo));
+            hardware.FD2.setPosition(servo);
+
+            telemetry.addData("FD2 = ",servo);
+            telemetry.update();
+        }
     }
 }

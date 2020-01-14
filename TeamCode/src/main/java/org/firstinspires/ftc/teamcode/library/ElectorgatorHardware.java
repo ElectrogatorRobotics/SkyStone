@@ -27,8 +27,8 @@ public class ElectorgatorHardware {
 //    public DcMotor liftMotor        = null;
 
 	public Servo grip = null;
-//	public Servo leftClaw   = null;
-//	public Servo rightClaw  = null;
+	public Servo FD1   = null;
+	public Servo FD2  = null;
 
 //    public ColorSensor jewelColorSensor = null;
     public BNO055IMU imu                = null;
@@ -110,6 +110,9 @@ public class ElectorgatorHardware {
         extendDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         grip = hardwareMap.servo.get("grip arm");
+
+        FD1 = hardwareMap.servo.get("grab FD");
+        FD2 = hardwareMap.servo.get("grab FD 2");
     }
 
     public void initIMU (HardwareMap hardware) {

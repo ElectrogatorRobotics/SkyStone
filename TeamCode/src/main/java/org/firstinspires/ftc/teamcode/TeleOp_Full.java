@@ -66,6 +66,13 @@ public class TeleOp_Full extends LinearOpMode {
 
             drive.setDriveSpeed(frontRightDrive,backRightDrive,frontLeftDrive,backLeftDrive);
 
+            if (gamepad1.x) {
+                arm.grabFD();
+            }
+            else if (gamepad1.y){
+                arm.releaseFD();
+            }
+
             //GAMEPAD 2
 
             throttle2 = Math.max(gamepad2.left_trigger,.5);

@@ -18,6 +18,9 @@ public interface Arm{
     void release();
     void setGripPosition (double targetPosition);
 
+    void grabFD();
+    void releaseFD();
+
 
 
 

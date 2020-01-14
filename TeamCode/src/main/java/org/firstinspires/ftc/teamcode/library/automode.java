@@ -49,7 +49,6 @@ public class automode extends LinearOpMode {
         // camera.scan()
 // get cam values
         //camera.get x.(); or camera.get y();
-// Drive to spot
         //drive.go to XY (x,y, here, now)
 // scan?
         //camera.scan

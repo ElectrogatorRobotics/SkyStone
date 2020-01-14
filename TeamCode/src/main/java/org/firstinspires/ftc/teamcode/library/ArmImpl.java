@@ -13,6 +13,8 @@ public class ArmImpl implements Arm {
      public DcMotor rotate;
      public DcMotor extend;
      public Servo grip;
+     public Servo FD1;
+     public Servo FD2;
 
      public ArmImpl(HardwareMap hwm) {
          rotate = (DcMotorEx) hwm.dcMotor.get("rotate arm");
@@ -29,6 +31,11 @@ public class ArmImpl implements Arm {
 
          grip = hwm.servo.get("grip arm");
          grip.scaleRange(0.2, 0.8);
+         FD1 = hwm.servo.get("grab FD");
+         FD1. scaleRange(0.2,0.8);
+         FD2 = hwm. servo.get("grab FD 2");
+         FD2.scaleRange(0.2,0.7);
+
      }
 
     @Override
@@ -65,6 +72,22 @@ public class ArmImpl implements Arm {
     public void setGripPosition(double targetPosition) {
         grip.setPosition(targetPosition);
     }
+
+    @Override
+    public void grabFD(){
+         FD1.setPosition(0);
+         FD2.setPosition(1);
+         //servo1 set for maybe .7
+         //servo2 set for maybe .6
+    }
+
+     @Override
+    public void releaseFD(){
+         FD1.setPosition(1);
+         FD2.setPosition(0);
+         //set both servos to probably .25
+     }
+
 
 
 // function to set an x and y coordinate
