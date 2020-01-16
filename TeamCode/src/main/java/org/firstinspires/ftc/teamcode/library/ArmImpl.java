@@ -32,7 +32,7 @@ public class ArmImpl implements Arm {
          grip = hwm.servo.get("grip arm");
          grip.scaleRange(0.2, 0.8);
          FD1 = hwm.servo.get("grab FD");
-         FD1. scaleRange(0.2,0.8);
+         FD1. scaleRange(0.3,0.6);
          FD2 = hwm. servo.get("grab FD 2");
          FD2.scaleRange(0.2,0.7);
 
@@ -75,7 +75,7 @@ public class ArmImpl implements Arm {
 
     @Override
     public void grabFD(){
-         FD1.setPosition(0);
+         FD1.setPosition(1);
          FD2.setPosition(1);
          //servo1 set for maybe .7
          //servo2 set for maybe .6
@@ -83,7 +83,7 @@ public class ArmImpl implements Arm {
 
      @Override
     public void releaseFD(){
-         FD1.setPosition(1);
+         FD1.setPosition(0);
          FD2.setPosition(0);
          //set both servos to probably .25
      }
