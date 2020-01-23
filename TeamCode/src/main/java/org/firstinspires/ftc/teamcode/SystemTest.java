@@ -22,132 +22,132 @@ public class SystemTest extends LinearOpMode {
         hardware.initMotors(hardwareMap);
 
         telemetry.addLine("Ready to start... thank you for waiting!");
+        telemetry.addLine("Press A for motors or B for servos (C1)");
         telemetry.update();
 
         waitForStart();
 
         ElapsedTime et = new ElapsedTime();
 
-        //Front Left Drive
-        telemetry.addLine("Running Front Left Drive");
-        telemetry.update();
-        hardware.frontLeftDrive.setPower(.6);
-        while (!gamepad1.a)
-        et.reset();
-        hardware.frontLeftDrive.setPower(0);
-        while (et.milliseconds() < 1000);
+        while(!gamepad1.a && !gamepad1.b);
+        if(gamepad1.a) {
+            while(gamepad1.a);
+            //Front Left Drive
+            telemetry.addLine("Running Front Left Drive");
+            telemetry.update();
+            hardware.frontLeftDrive.setPower(.6);
+            while (!gamepad1.a)
+                et.reset();
+            hardware.frontLeftDrive.setPower(0);
+            while (et.milliseconds() < 1000) ;
 
-        //Front Right Drive
-        telemetry.addLine("Running Front Right Drive");
-        telemetry.update();
-        hardware.frontRightDrive.setPower(.6);
-        while (!gamepad1.a)
-        et.reset();
-        hardware.frontRightDrive.setPower(0);
-        while (et.milliseconds() < 1000) ;
+            //Front Right Drive
+            telemetry.addLine("Running Front Right Drive");
+            telemetry.update();
+            hardware.frontRightDrive.setPower(.6);
+            while (!gamepad1.a)
+                et.reset();
+            hardware.frontRightDrive.setPower(0);
+            while (et.milliseconds() < 1000) ;
 
-        //Back Left Drive
-        telemetry.addLine("Running Back Left Drive");
-        telemetry.update();
-        hardware.backLeftDrive.setPower(.6);
-        while (!gamepad1.a)
-        et.reset();
-        hardware.backLeftDrive.setPower(0);
-        while (et.milliseconds() < 1000) ;
+            //Back Left Drive
+            telemetry.addLine("Running Back Left Drive");
+            telemetry.update();
+            hardware.backLeftDrive.setPower(.6);
+            while (!gamepad1.a)
+                et.reset();
+            hardware.backLeftDrive.setPower(0);
+            while (et.milliseconds() < 1000) ;
 
-        //Back Right Drive
-        telemetry.addLine("Running Back Right Drive");
-        telemetry.update();
-        hardware.backRightDrive.setPower(.6);
-        while (!gamepad1.a)
+            //Back Right Drive
+            telemetry.addLine("Running Back Right Drive");
+            telemetry.update();
+            hardware.backRightDrive.setPower(.6);
+            while (!gamepad1.a)
+                et.reset();
+            hardware.backRightDrive.setPower(0);
+            while (et.milliseconds() < 1000) ;
+
+
+            //Back Right Drive
+            telemetry.addLine("Running Rotate Motor");
+            telemetry.update();
             et.reset();
-        hardware.backRightDrive.setPower(0);
-        while (et.milliseconds() < 1000) ;
+            while (et.milliseconds() < 1000) hardware.rotateDrive.setPower(.4);
+            hardware.rotateDrive.setPower(0);
+            et.reset();
+            while (et.milliseconds() < 1000) hardware.rotateDrive.setPower(-.4);
+            hardware.rotateDrive.setPower(0);
 
-
-        //Back Right Drive
-        telemetry.addLine("Running Rotate Motor");
-        telemetry.update();
-        et.reset();
-        while (et.milliseconds() < 1000) hardware.rotateDrive.setPower(.4);
-        hardware.rotateDrive.setPower(0);
-        et.reset();
-        while (et.milliseconds() < 1000) hardware.rotateDrive.setPower(-.4);
-        hardware.rotateDrive.setPower(0);
-
-        //Rotate
-        telemetry.addLine("Running Extend Drive");
-        telemetry.update();
-        et.reset();
-        while (et.milliseconds() < 1000) hardware.extendDrive.setPower(.4);
-        hardware.extendDrive.setPower(0);
-        et.reset();
-        while (et.milliseconds() < 1000) hardware.extendDrive.setPower(-.4);
-        hardware.extendDrive.setPower(0);
-
-        float servo = 0.5f;
-        while(!gamepad1.right_bumper) {
-            if (gamepad1.a) {
-                servo -= .2;
-            }
-            else if (gamepad1.b) {
-                servo += .2;
-            }
-            else if (gamepad1.x) {
-                servo -= .1;
-            }
-            else if (gamepad1.y) {
-                servo += .1;
-            }
-            servo = Math.min(.8f,Math.max(.2f,servo));
-            hardware.grip.setPosition(servo);
-
-            telemetry.addData("Servo = ",servo);
+            //Rotate
+            telemetry.addLine("Running Extend Drive");
             telemetry.update();
-         }
-        while(gamepad1.right_bumper);
-
-        servo = 0.5f;
-        while(!gamepad1.right_bumper) {
-            if (gamepad1.a) {
-                servo -= .2;
-            }
-            else if (gamepad1.b) {
-                servo += .2;
-            }
-            else if (gamepad1.x) {
-                servo -= .1;
-            }
-            else if (gamepad1.y) {
-                servo += .1;
-            }
-            servo = Math.min(.8f,Math.max(.2f,servo));
-            hardware.FD1.setPosition(servo);
-
-            telemetry.addData("FD1 = ",servo);
-            telemetry.update();
+            et.reset();
+            while (et.milliseconds() < 1000) hardware.extendDrive.setPower(.4);
+            hardware.extendDrive.setPower(0);
+            et.reset();
+            while (et.milliseconds() < 1000) hardware.extendDrive.setPower(-.4);
+            hardware.extendDrive.setPower(0);
         }
-        while(gamepad1.right_bumper);
+        else if(gamepad1.b) {
+            while(gamepad1.b);
+            float servo = 0.5f;
+            while (!gamepad1.right_bumper) {
+                if (gamepad1.a) {
+                    servo -= .2;
+                } else if (gamepad1.b) {
+                    servo += .2;
+                } else if (gamepad1.x) {
+                    servo -= .1;
+                } else if (gamepad1.y) {
+                    servo += .1;
+                }
+                servo = Math.min(.8f, Math.max(.2f, servo));
+                hardware.grip.setPosition(servo);
 
-        servo = 0.5f;
-        while(!gamepad1.right_bumper) {
-            if (gamepad1.a) {
-                servo -= .2;
+                telemetry.addData("Grip Servo = ", servo);
+                telemetry.update();
             }
-            else if (gamepad1.b) {
-                servo += .2;
-            }
-            else if (gamepad1.x) {
-                servo -= .1;
-            }
-            else if (gamepad1.y) {
-                servo += .1;
-            }
-            servo = Math.min(.8f,Math.max(.2f,servo));
-            hardware.FD2.setPosition(servo);
+            while (gamepad1.right_bumper) ;
 
-            telemetry.addData("FD2 = ",servo);
-            telemetry.update();
+            servo = 0.5f;
+            while (!gamepad1.right_bumper) {
+                if (gamepad1.a) {
+                    servo -= .1;
+                } else if (gamepad1.b) {
+                    servo += .1;
+                } else if (gamepad1.x) {
+                    servo -= .01;
+                } else if (gamepad1.y) {
+                    servo += .01;
+                }
+                while(gamepad1.a || gamepad1.b || gamepad1.x || gamepad1.y);
+                servo = Math.min(.8f, Math.max(.2f, servo));
+                hardware.FD1.setPosition(servo);
+
+                telemetry.addData("FD1 = ", servo);
+                telemetry.update();
+            }
+            while (gamepad1.right_bumper) ;
+
+            servo = 0.5f;
+            while (!gamepad1.right_bumper) {
+                if (gamepad1.a) {
+                    servo -= .1;
+                } else if (gamepad1.b) {
+                    servo += .1;
+                } else if (gamepad1.x) {
+                    servo -= .01;
+                } else if (gamepad1.y) {
+                    servo += .01;
+                }
+                while(gamepad1.a || gamepad1.b || gamepad1.x || gamepad1.y);
+                servo = Math.min(.8f, Math.max(.2f, servo));
+                hardware.FD2.setPosition(servo);
+
+                telemetry.addData("FD2 = ", servo);
+                telemetry.update();
+            }
         }
     }
 }

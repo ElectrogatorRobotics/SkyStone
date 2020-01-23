@@ -27,9 +27,11 @@ public class Auto_BPM_BlueWall extends LinearOpMode {
 
         waitForStart();
 //        while(opModeIsActive()){
-                drive.slide(28);
-              drive.forward(-28);
-
+        drive.forward(34);
+        arm.grabFD();
+        drive.forward(-34);
+        arm.releaseFD();
+        drive.slide(-49);
 //            camera.scan(3000);
 //            telemetry.addData("Cam X:",camera.getX());
 //            telemetry.addData("Cam Y",camera.getY());
