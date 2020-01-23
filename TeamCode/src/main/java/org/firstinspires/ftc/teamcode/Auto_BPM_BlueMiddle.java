@@ -27,8 +27,14 @@ public class Auto_BPM_BlueMiddle extends LinearOpMode {
 
         waitForStart();
 //        while(opModeIsActive()){
-                drive.slide(28);
-              drive.forward(-28);
+                drive.slide(48);
+              drive.forward(3);
+
+              arm.grabFD();
+
+              drive.slide(-36);
+
+
 
 //            camera.scan(3000);
 //            telemetry.addData("Cam X:",camera.getX());
