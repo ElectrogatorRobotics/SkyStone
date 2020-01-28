@@ -29,17 +29,27 @@ public class Auto_BPM_RedWall extends LinearOpMode {
         ElapsedTime timer = new ElapsedTime();
 
         waitForStart();
+
+        arm.releaseFD();
 //        while(opModeIsActive()){
-              drive.forward(-29);
+        drive.slide(-10);
+        drive.forward(-29);
         ((DriveImpl)drive).forward(-2,.1);
-              timer.reset();
-              arm.grabFD();
-              while(timer.milliseconds() < 2000);
-              drive.forward(31);
-              timer.reset();
-              arm.releaseFD();
-              while(timer.milliseconds() < 2000);
-              drive.slide(48);
+        timer.reset();
+        arm.grabFD();
+        while(timer.milliseconds() < 1500);
+        drive.forward(31);
+        timer.reset();
+        arm.releaseFD();
+        while(timer.milliseconds() < 1500);
+        ((DriveImpl)drive).power_slide(2,.2);
+        drive.slide(29);
+        drive.forward(-10);
+        drive.slide(-5);
+        drive.forward(10);
+        ((DriveImpl)drive).power_slide(2,.2);
+        drive.slide(20);
+
 
 
 //            camera.scan(3000);

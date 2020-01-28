@@ -132,8 +132,14 @@ public class DriveImpl implements Drive {
     }
 
     public void slide(double inches){
+        power_slide(inches, SLIDE_POWER);
+        stop();
+        setMotorMode(MotorMode.POWER);
+    }
+
+    public void power_slide(double inches, double power){
         int ticks = (int) Math.round(inches * ENCODER_COUNTS_PER_INCH);
-        slideOver(ticks, lom);
+        slideOver(ticks, lom, power);
     }
 
 
@@ -235,18 +241,22 @@ public class DriveImpl implements Drive {
         return angleToTurn;
     }
 
-    public void slideOver(int targetPosition, LinearOpMode lom){
+    public void slideOver(int targetPosition, LinearOpMode lom) {
+        slideOver(targetPosition, lom, SLIDE_POWER);
+        stop();
+        setMotorMode(MotorMode.POWER);
+    }
+    public void slideOver(int targetPosition, LinearOpMode lom, double power){
+
         setTargetTolerance(50);
         frontLeftDrive.setTargetPosition(frontLeftDrive.getCurrentPosition() + targetPosition);
         frontRightDrive.setTargetPosition(frontRightDrive.getCurrentPosition() - targetPosition);
         backLeftDrive.setTargetPosition(backLeftDrive.getCurrentPosition() - targetPosition);
         backRightDrive.setTargetPosition(backRightDrive.getCurrentPosition() + targetPosition);
         setMotorMode(MotorMode.POSITION);
-        setDriveSpeed(SLIDE_POWER, SLIDE_POWER*-1, SLIDE_POWER*-1, SLIDE_POWER);
+        setDriveSpeed(power, power*-1, power*-1, power);
         do {
             Thread.yield(); //effectively what the LinearOpMode idle call does
         } while (frontRightDrive.isBusy() && lom.opModeIsActive());
-        stop();
-        setMotorMode(MotorMode.POWER);
     }
 }

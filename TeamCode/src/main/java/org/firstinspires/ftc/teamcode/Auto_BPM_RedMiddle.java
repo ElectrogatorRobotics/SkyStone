@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.library.Arm;
 import org.firstinspires.ftc.teamcode.library.ArmImpl;
@@ -25,13 +26,29 @@ public class Auto_BPM_RedMiddle extends LinearOpMode {
 
         Arm arm = new ArmImpl(hardwareMap);
 
+
+        ElapsedTime timer = new ElapsedTime();
+
         waitForStart();
 //        while(opModeIsActive()){
-                drive.slide(48);
-              drive.forward(4);
-              arm.grabFD();
-              drive.forward(-3);
-              drive.slide(-30);
+        arm.releaseFD();
+        drive.slide(-14);
+        drive.forward(-29);
+        ((DriveImpl)drive).forward(-2,.1);
+        timer.reset();
+        arm.grabFD();
+        while(timer.milliseconds() < 1500);
+        drive.forward(31);
+        timer.reset();
+        arm.releaseFD();
+        while(timer.milliseconds() < 1500);
+        ((DriveImpl)drive).power_slide(2,.2);
+        drive.slide(29);
+        drive.forward(-28);
+        drive.slide(-5);
+        ((DriveImpl)drive).power_slide(2,.2);
+        drive.slide(22);
+
 
 //            camera.scan(3000);
 //            telemetry.addData("Cam X:",camera.getX());
