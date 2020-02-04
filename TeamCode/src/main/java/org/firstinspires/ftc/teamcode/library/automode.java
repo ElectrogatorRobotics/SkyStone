@@ -34,10 +34,12 @@ public class automode extends LinearOpMode {
                         telemetry.update();
                         sleep(2000);
                 }
-        void drive () extends
+        void Drive () extends
                 telemetry.addData("camX",camera.getX());
                 telemetry.addData("camY", camera.getY());
                 telemetry.addData("camAngle",camera.getAngle());
+                telemetry.update();
+                drive.go(camera.getX());
 
         }
 }
@@ -47,7 +49,6 @@ public class automode extends LinearOpMode {
         // camera.scan()
 // get cam values
         //camera.get x.(); or camera.get y();
-// Drive to spot
         //drive.go to XY (x,y, here, now)
 // scan?
         //camera.scan

@@ -4,18 +4,18 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.library.Drive;
-import org.firstinspires.ftc.teamcode.library.DriveImpl;
 import org.firstinspires.ftc.teamcode.library.Arm;
 import org.firstinspires.ftc.teamcode.library.ArmImpl;
+import org.firstinspires.ftc.teamcode.library.Drive;
+import org.firstinspires.ftc.teamcode.library.DriveImpl;
 import org.firstinspires.ftc.teamcode.library.ElectorgatorHardware;
 
 /**
  * Created by Luke on 10/1/2017.
  */
 
-@TeleOp(name = "TeleOp")
-public class TeleOp_Full extends LinearOpMode {
+@TeleOp(name = "TeleOp - HighSpeed")
+public class TeleOp_HighSpeed extends LinearOpMode {
     ElectorgatorHardware hardware = new ElectorgatorHardware();
 	Drive drive;
 	Arm arm;
@@ -48,10 +48,10 @@ public class TeleOp_Full extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            ///GAMEPAD 1
+            ///////////////////////////////   GAMEPAD 1   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
             // calculate the throttle position that will be used when calculating the motor powers
-            throtle = Math.max(gamepad1.left_trigger,.4); //throtle = drive.throttleControl(gamepad1.left_trigger, .4);
+            throtle = Math.max(1 - gamepad1.left_trigger, .4); //throtle = drive.throttleControl(gamepad1.left_trigger, .4);
 
             /**
              * Calculate the power of each motor by multiplying the left Y-axes and the left X-axes that are
@@ -59,10 +59,10 @@ public class TeleOp_Full extends LinearOpMode {
              * not multiplied by the throttle, because it is used for sliding sideways and can not be controlled
              * efficiently with the throttle due to the high power requirements of sliding.
              */
-            frontRightDrive = ((gamepad1.left_stick_y * throtle) + (gamepad1.left_stick_x * throtle) + gamepad1.right_stick_x);
-            frontLeftDrive  = ((gamepad1.left_stick_y * throtle) - (gamepad1.left_stick_x * throtle) - gamepad1.right_stick_x);
-            backRightDrive  = ((gamepad1.left_stick_y * throtle) + (gamepad1.left_stick_x * throtle) - gamepad1.right_stick_x);
-            backLeftDrive   = ((gamepad1.left_stick_y * throtle) - (gamepad1.left_stick_x * throtle) + gamepad1.right_stick_x);
+            frontRightDrive = (gamepad1.left_stick_y * throtle) + (gamepad1.left_stick_x * throtle) + (gamepad1.right_stick_x * throtle);
+            frontLeftDrive  = (gamepad1.left_stick_y * throtle) - (gamepad1.left_stick_x * throtle) - (gamepad1.right_stick_x * throtle);
+            backRightDrive  = (gamepad1.left_stick_y * throtle) + (gamepad1.left_stick_x * throtle) - (gamepad1.right_stick_x * throtle);
+            backLeftDrive   = (gamepad1.left_stick_y * throtle) - (gamepad1.left_stick_x * throtle) + (gamepad1.right_stick_x * throtle);
 
             drive.setDriveSpeed(frontRightDrive,backRightDrive,frontLeftDrive,backLeftDrive);
 
@@ -73,9 +73,9 @@ public class TeleOp_Full extends LinearOpMode {
                 arm.releaseFD();
             }
 
-            //GAMEPAD 2
+            //////////////////////////////////   GAMEPAD 2   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-            throttle2 = Math.max(gamepad2.left_trigger,.5);
+            throttle2 = Math.max(1 - gamepad2.left_trigger,.5);
 
             rotate = -gamepad2.left_stick_y * throttle2;
             arm.setAngleSpeed(rotate);
@@ -86,7 +86,7 @@ public class TeleOp_Full extends LinearOpMode {
             else if (gamepad2.right_bumper) arm.release();
 
 
-            //TELEMETRY
+            ////////////////////////////// TELEMETRY \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
             telemetry.addData("Front right drive speed = ", "%1.2f", frontRightDrive);
             telemetry.addData("Front left drive speed  = ", "%1.2f", frontLeftDrive);
@@ -94,8 +94,9 @@ public class TeleOp_Full extends LinearOpMode {
             telemetry.addData("Back left drive speed   = ", "%1.2f", backLeftDrive);
 	        telemetry.addData("Throttle                = ", "%1.2f", throtle);
 	        telemetry.addLine();
-            telemetry.addData("angle speed = ", "%1.2f", rotate);
+            telemetry.addData("angle speed   = ", "%1.2f", rotate);
             telemetry.addData("extend speed  = ", "%1.2f", extend);
+            telemetry.addData("Throttle 2    = ", "%1.2f", throttle2);
             telemetry.update();
         }
     }
