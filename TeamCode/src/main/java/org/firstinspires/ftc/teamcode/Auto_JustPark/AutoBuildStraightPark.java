@@ -1,15 +1,14 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Auto_JustPark;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 import org.firstinspires.ftc.teamcode.library.Arm;
 import org.firstinspires.ftc.teamcode.library.ArmImpl;
 import org.firstinspires.ftc.teamcode.library.Drive;
 import org.firstinspires.ftc.teamcode.library.DriveImpl;
 
-@Autonomous(name="Park Right Slide", group="Park")
-public class AutoBuildSideSlidePark extends LinearOpMode {
+@Autonomous(name="Park Right Direct", group="Park")
+public class AutoBuildStraightPark extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -27,7 +26,7 @@ public class AutoBuildSideSlidePark extends LinearOpMode {
 
         waitForStart();
 //        while(opModeIsActive()){
-                drive.slide(28);
+              drive.slide(2);
               drive.forward(-28);
 
 //            camera.scan(3000);
