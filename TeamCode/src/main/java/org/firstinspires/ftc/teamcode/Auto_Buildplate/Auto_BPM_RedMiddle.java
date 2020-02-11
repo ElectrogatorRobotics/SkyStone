@@ -1,14 +1,16 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Auto_Buildplate;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.teamcode.library.Arm;
 import org.firstinspires.ftc.teamcode.library.ArmImpl;
 import org.firstinspires.ftc.teamcode.library.Drive;
 import org.firstinspires.ftc.teamcode.library.DriveImpl;
 
-@Autonomous(name="Park Right Direct", group="Park")
-public class AutoBuildStraightPark extends LinearOpMode {
+@Autonomous(name="BPM - Red Middle", group="BuildPlate")
+public class Auto_BPM_RedMiddle extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -24,10 +26,29 @@ public class AutoBuildStraightPark extends LinearOpMode {
 
         Arm arm = new ArmImpl(hardwareMap);
 
+
+        ElapsedTime timer = new ElapsedTime();
+
         waitForStart();
 //        while(opModeIsActive()){
-              drive.slide(2);
-              drive.forward(-28);
+        arm.releaseFD();
+        drive.slide(-14);
+        drive.forward(-29);
+        ((DriveImpl)drive).forward(-2,.1);
+        timer.reset();
+        arm.grabFD();
+        while(timer.milliseconds() < 1500);
+        drive.forward(31);
+        timer.reset();
+        arm.releaseFD();
+        while(timer.milliseconds() < 1500);
+        ((DriveImpl)drive).power_slide(2,.2);
+        drive.slide(29);
+        drive.forward(-28);
+        drive.slide(-5);
+        ((DriveImpl)drive).power_slide(2,.2);
+        drive.slide(22);
+
 
 //            camera.scan(3000);
 //            telemetry.addData("Cam X:",camera.getX());
