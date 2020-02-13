@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.hardware.motors.RevRobotics20HdHexMotor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class ArmImpl implements Arm {
      public DcMotor rotate;
@@ -41,6 +42,22 @@ public class ArmImpl implements Arm {
     @Override
     public void armAngle(double armAngle, LinearOpMode lom) {
 
+    }
+
+    public void armAngle_bytime(double seconds, LinearOpMode lom) {
+        ElapsedTime et = new ElapsedTime();
+        et.reset();
+        int power = (seconds<0?-1:1);
+        long millisecs = Math.round(Math.abs(seconds) * 1000);
+        rotate.setPower(power);
+        while (et.milliseconds() < millisecs && lom.opModeIsActive()){
+            //waiting and waiting
+            Thread.yield();
+        }
+        rotate.setPower(0); //STOP! In the name of love.....
+                                    // GET OUT OF THE CODE, HAL. - Mira
+                            //sorry... just trying to help --Hal
+                            //HA! I pushed it to git. Deal with it.
     }
 
     @Override
