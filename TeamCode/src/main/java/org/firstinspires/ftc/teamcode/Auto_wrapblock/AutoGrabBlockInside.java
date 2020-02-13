@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.library.Arm;
 import org.firstinspires.ftc.teamcode.library.ArmImpl;
 import org.firstinspires.ftc.teamcode.library.Camera;
+import org.firstinspires.ftc.teamcode.library.CameraImpl;
 import org.firstinspires.ftc.teamcode.library.Drive;
 import org.firstinspires.ftc.teamcode.library.DriveImpl;
 
@@ -26,33 +27,33 @@ public class AutoGrabBlockInside extends LinearOpMode {
 
         Arm arm = new ArmImpl(hardwareMap);
 
-        int blockLocation = -3;
+        int blockLocation = -1;
 
         waitForStart();
 //        while(opModeIsActive()){
+        arm.release();
               drive.forward(18);
               if(camera.scan(2000)){
                   blockLocation=0;
               }
               else{
-                  drive.slide(-8);
-                  if camera.scan(2000){
+                  drive.slide(8);
+                  if (camera.scan(2000)){
                       blockLocation=1;
                   }
                   else{
-                      drive.slide(16);
-                      if camera.scan(2000){
-                          blockLocation=-1;
-                      }
+                      drive.slide(-16);
                   }
               }
-               arm.setAngleSpeed(1);
 
-              else Camera.scan();
-              // do nothing
-              if camera.scan();
-                drive.slide(?);
-
+                ((ArmImpl)arm).armAngle_bytime(10,this);
+                drive.forward(6);
+                arm.grip();
+                drive.forward(-6);
+                drive.turnToAngle(-90,this);
+                drive.forward(50 + (blockLocation * 8));
+                arm.release();
+                drive.forward(-20);
 
 
 //            camera.scan(3000);

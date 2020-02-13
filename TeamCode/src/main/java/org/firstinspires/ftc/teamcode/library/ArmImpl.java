@@ -55,9 +55,7 @@ public class ArmImpl implements Arm {
             Thread.yield();
         }
         rotate.setPower(0); //STOP! In the name of love.....
-                                    // GET OUT OF THE CODE, HAL. - Mira
-                            //sorry... just trying to help --Hal
-                            //HA! I pushed it to git. Deal with it.
+                                    // Can still clean it up. But i like it so I will leave it.
     }
 
     @Override
