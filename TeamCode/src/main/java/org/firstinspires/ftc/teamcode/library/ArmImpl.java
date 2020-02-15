@@ -17,12 +17,18 @@ public class ArmImpl implements Arm {
      public Servo FD1;
      public Servo FD2;
 
+     public static final double rotateTicksPerDegree = 1478.4 *     //the encoder ticks per revolution. not sure if includes gearing.
+                                                        .2 *        // 5:1 gear ratio reduction?
+                                                        20;          //ticks per angle??
+
      public ArmImpl(HardwareMap hwm) {
          rotate = (DcMotorEx) hwm.dcMotor.get("rotate arm");
          rotate.setMotorType(MotorConfigurationType.getMotorType(RevRobotics20HdHexMotor.class));
-         rotate.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
          rotate.setDirection(DcMotorSimple.Direction.FORWARD);
+         rotate.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
          rotate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         rotate.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
          extend = (DcMotorEx) hwm.dcMotor.get("extend arm");
          extend.setMotorType(MotorConfigurationType.getMotorType(RevRobotics20HdHexMotor.class));
@@ -41,7 +47,14 @@ public class ArmImpl implements Arm {
 
     @Override
     public void armAngle(double armAngle, LinearOpMode lom) {
-
+        rotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        long position = Math.round(rotate.getCurrentPosition() + (armAngle * rotateTicksPerDegree));
+        rotate.setTargetPosition((int)position);
+        setAngleSpeed(1);
+        do {
+            Thread.yield(); //effectively what the LinearOpMode idle call does
+        } while (rotate.isBusy() && lom.opModeIsActive());
+        rotate.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void armAngle_bytime(double seconds, LinearOpMode lom) {
